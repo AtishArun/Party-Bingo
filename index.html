@@ -72,33 +72,40 @@ button{
 <button onclick="resetBoard()">Reset Board</button>
 
 <script>
+  function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
+
 
 const prompts = [
-"Best outfit tonight",
-"Knows the host the longest",
-"Traveled to another country",
-"Biggest party animal",
-"Most likely to be late",
-"Gym freak",
-"Can cook well",
-"Night owl",
-"Early bird",
-"Loves spicy food",
-"Can dance well",
-"Watched a series in 1 day",
-"Owns a pet",
-"Coffee addict",
-"Reads books",
-"Has the best laugh",
-"Good singer",
-"Tech geek",
-"Funny storyteller",
-"From another city",
-"Youngest person here",
-"Oldest person here",
-"Best dressed shoes",
-"Met the host recently",
-"Social butterfly"
+"Person that got the best fit",
+"Looks like he would lift you with one hand",
+"Fluently knows another language(no hindi marathi english)",
+"Looks like a party animal",
+"Looks like theyre late to college daily",
+"Looks like he doesnt workout but is actually jacked",
+"Looks like they make insane food",
+"Looks like they never sleep",
+"Looks like theyre heartbroken :) ",
+"Looks like a certified musician",
+"Looks like theyre gonna be insta-famous",
+"Looks like theyd skip lectures to watch FRIENDS",
+"Looks like theyd be terrible with kids",
+"Looks like theyd get caught forging signatures",
+"Looks like they top every test",
+"Looks the Youngest",
+"Looks like theyd bully you for the fun of it",
+"Looks like they spend hours getting ready",
+"Looks like they have a funny story always",
+"Looks like theyd take bribes",
+"Looks like theyd spend unreal amounts on makeup",
+"Looks like they get hit-on on a daily basis",
+"Looks like theyre very innocent",
+"Looks the most confused at the party",
+"Looks like theyd bet their life savings on a match"
 ];
 
 const grid = document.getElementById("grid");
@@ -141,7 +148,10 @@ function loadBoard(){
 
 function resetBoard(){
   localStorage.clear();
-  createBoard();
+  createBoard(;
 }
 
-createBoard(
+shuffleArray(prompts);
+createBoard();
+loadBoard();
+</script>
