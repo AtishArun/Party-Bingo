@@ -150,10 +150,11 @@ function resetBoard(){
   localStorage.clear();
   createBoard();
 }
-
+window.onload = function() {
 shuffleArray(prompts);
 createBoard();
 loadBoard();
+  }
 </script>
   </body>
 </html>
