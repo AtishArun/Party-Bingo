@@ -51,6 +51,7 @@ input.name{
   padding:5px;
   text-align:center;
 }
+
 button{
   margin-top:20px;
   padding:10px 20px;
@@ -60,26 +61,18 @@ button{
   cursor:pointer;
 }
 </style>
-</head>
 
-<body>
+<script defer>
 
-<h1>🎉 Party Bingo</h1>
-<input class="name" id="username" placeholder="Your Name">
-
-<div class="grid" id="grid"></div>
-
-<button onclick="resetBoard()">Reset Board</button>
-
-<script>
-  function shuffleArray(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
+// SHUFFLE FUNCTION
+function shuffleArray(array){
+  for(let i=array.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [array[i],array[j]]=[array[j],array[i]];
   }
 }
 
-
+// YOUR PROMPTS (unchanged)
 const prompts = [
 "Person that got the best fit",
 "Looks like he would lift you with one hand",
@@ -108,19 +101,19 @@ const prompts = [
 "Looks like theyd bet their life savings on a match"
 ];
 
-const grid = document.getElementById("grid");
-
 function createBoard(){
+  const grid=document.getElementById("grid");
   grid.innerHTML="";
-  prompts.forEach((p,i)=>{
-    let cell=document.createElement("div");
+  
+  prompts.forEach(p=>{
+    const cell=document.createElement("div");
     cell.className="cell";
 
-    let prompt=document.createElement("div");
+    const prompt=document.createElement("div");
     prompt.className="prompt";
     prompt.innerText=p;
 
-    let input=document.createElement("input");
+    const input=document.createElement("input");
     input.placeholder="Name...";
     input.oninput=saveBoard;
 
@@ -148,13 +141,25 @@ function loadBoard(){
 
 function resetBoard(){
   localStorage.clear();
-  createBoard();
+  location.reload();
 }
-window.onload = function() {
-shuffleArray(prompts);
-createBoard();
-loadBoard();
-  }
+
+// RUN APP AFTER PAGE LOADS
+document.addEventListener("DOMContentLoaded", ()=>{
+  shuffleArray(prompts);
+  createBoard();
+  loadBoard();
+});
+
 </script>
-  </body>
+</head>
+
+<body>
+
+<h1>🎉 Party Bingo</h1>
+<input class="name" id="username" placeholder="Your Name">
+<div class="grid" id="grid"></div>
+<button onclick="resetBoard()">Reset Board</button>
+
+</body>
 </html>
